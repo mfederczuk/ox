@@ -23,6 +23,20 @@
 #include <ox/types.h>
 
 /**
+ * The internal representation of a project configuration file.
+ */
+struct ox_project_configuration {
+	/** in yaml: "artifact" */
+	OX_NON_NULLABLE(OX_ALLOCATED(const_cstr_t)) artifact_name;
+
+	/** in yaml: "srcdir" */
+	OX_NON_NULLABLE(OX_ALLOCATED(const_cstr_t)) source_directory_path;
+
+	/** in yaml: "includedir" */
+	OX_NULLABLE(OX_ALLOCATED(const_cstr_t))     include_directory_path;
+};
+
+/**
  * DESCRIPTION:
  *   Tries to find a project configuration file in the current working directory.
  *
@@ -49,5 +63,12 @@
 ox_ret_status_t ox_find_project_configuration_file(
 	OX_NON_NULLABLE(OX_UNINITIALIZED(const_cstr_t)*) project_configuration_filename_pointer
 );
+
+ox_ret_status_t ox_parse_project_configuration_file(
+	OX_UNINITIALIZED(struct ox_project_configuration)* project_configuration_pointer,
+	OX_NON_NULLABLE(const_cstr_t) project_configuration_filename
+);
+
+void ox_project_configuration_destroy(struct ox_project_configuration* project_configuration_pointer);
 
 #endif /* OX_PROJECT_CONFIGURATION_H */

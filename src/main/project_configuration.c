@@ -94,3 +94,10 @@ ox_ret_status_t ox_find_project_configuration_file(
 
 	return OX_RET_STATUS_SUCCESS;
 }
+
+ox_ret_status_t ox_parse_project_configuration_file(
+	OX_UNINITIALIZED(struct ox_project_configuration)* project_configuration_pointer,
+	OX_NON_NULLABLE(const_cstr_t) project_configuration_filename
+) {}
+
+void ox_project_configuration_destroy(struct ox_project_configuration* project_configuration_pointer) {}
